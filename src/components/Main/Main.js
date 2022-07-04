@@ -48,7 +48,7 @@ const Main = () => {
     return (
         <section>
             <Grid container spacing={4}>
-                <Grid item md={5} xs={12} className='cont'>
+                <Grid item md={5} xs={12} className=''>
                     <Typography variant="h5" gutterBottom component="div" className='text-align-center heading-list'>
                         User List
                     </Typography>
@@ -62,6 +62,11 @@ const Main = () => {
             <Grid container spacing={4} className='mt4'>
                 <Grid item md={5} xs={12}>
                     <UserList error={error} settingId={settingId} users={users} avatars={avatars}/>
+                </Grid>
+                <Grid item md={5} xs={12} className='none'>
+                    <Typography variant="h5" gutterBottom component="div" className='text-align-center heading-list'>
+                        User Details
+                    </Typography>
                 </Grid>
                 <Grid item md={7} xs={12} className='container'>
                     <Details error={error} loading={loading} userId={userId} users={users} avatars={avatars}/>
