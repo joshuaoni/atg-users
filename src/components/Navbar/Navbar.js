@@ -6,7 +6,7 @@ const Navbar = () => {
     return (
         <nav>
             <Typography variant="h6" gutterBottom component="div" className='text-align-center'>
-                ATG ADMIN DASHBOARD
+                ATG DASHBOARD
             </Typography>
         </nav>
     );
