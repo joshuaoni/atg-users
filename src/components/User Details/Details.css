@@ -10,6 +10,13 @@
     align-items: center;
 }
 
+.error {
+    padding: 0;
+    margin-bottom: 0rem;
+    display: flex;
+    justify-content: center;
+}
+
 .avatar {
     padding: 2rem 0 0 0;
     margin-bottom: 0rem;

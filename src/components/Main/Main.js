@@ -16,6 +16,7 @@ import img8 from '../../assets/img8.png';
 import img9 from '../../assets/img9.png';
 import img10 from '../../assets/img10.png';
 
+// profile pictures array
 const avatars = [
     img1, img2, img3, img4, img5, img6, img7, img8, img9, img10
 ]
@@ -24,6 +25,7 @@ const Main = () => {
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [userId, setUserId] = useState(null);
+    const [error, setError] = useState(null);
 
     const settingId =  (num) => {
         setUserId(num);
@@ -31,10 +33,14 @@ const Main = () => {
     
     useEffect(()=>{
         const handleFetch = async () => {
-            const response = await fetch('https://602e7c2c4410730017c50b9d.mockapi.io/users');
-            const res = await response.json();
-            setUsers(res || []);
-            setLoading(false);
+            try {
+                const response = await fetch('https://602e7c2c4410730017c50b9d.mockapi.io/users');
+                const res = await response.json();
+                setUsers(res || []);
+                setLoading(false);
+            } catch(err) {
+                setError('Error: Users failed to load');    // error message for bad api call
+            }
         }
         handleFetch();
     }, [loading]);
@@ -55,10 +61,10 @@ const Main = () => {
             </Grid>
             <Grid container spacing={4} className='mt4'>
                 <Grid item md={5} xs={12}>
-                    <UserList settingId={settingId} users={users} avatars={avatars}/>
+                    <UserList error={error} settingId={settingId} users={users} avatars={avatars}/>
                 </Grid>
                 <Grid item md={7} xs={12} className='container'>
-                    <Details loading={loading} userId={userId} users={users} avatars={avatars}/>
+                    <Details error={error} loading={loading} userId={userId} users={users} avatars={avatars}/>
                 </Grid>
             </Grid>
         </section>

@@ -6,11 +6,11 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
 
-const Details = ({users, avatars, userId, loading}) => {
+const Details = ({users, avatars, userId, loading, error}) => {
     
     return (
         <div className='details'>
-            {loading ?
+            {loading && !error ?
             <Box>
                 <Box className='avatar'>
                     <CircularProgress/>
@@ -19,6 +19,13 @@ const Details = ({users, avatars, userId, loading}) => {
                     Loading...
                 </Typography>
             </Box> : 
+            <>
+                {error ?
+                <Box className='error'>
+                    <Typography variant="h6" gutterBottom component="div" className='text-align-center'>
+                        {error}
+                    </Typography> 
+                </Box> :
             <>
                 {userId ? 
                 <Box className='w-100'>
@@ -75,6 +82,8 @@ const Details = ({users, avatars, userId, loading}) => {
                 <Typography variant="h6" gutterBottom component="div">
                     No user selected
                 </Typography>}
+            </>
+                }
             </>
             }
         </div>

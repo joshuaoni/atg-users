@@ -9,7 +9,8 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
-const UserList = ({users, avatars, settingId}) => {
+const UserList = ({users, avatars, settingId, error}) => {
+    
     const handleRequest = (id) => {
         settingId(Number(id));
     }
@@ -17,29 +18,39 @@ const UserList = ({users, avatars, settingId}) => {
     return (
         <div className='list'>
             <List dense={false}>
-                {users.length ?
-                <Box className='w-100'>
-                    {users.map((user, i) => {
-                        return (
-                            <ListItem 
-                                key={user.id} 
-                                onClick={()=>{
-                                    handleRequest(user.id)
-                                }} 
-                                className='user'
-                            >
-                                <ListItemAvatar>
-                                    <Avatar>
-                                        <img width='40px' height='40px' alt='' src={avatars[i]} />
-                                    </Avatar>
-                                </ListItemAvatar>
-                                <ListItemText
-                                    primary={user.profile.firstName + ' ' + user.profile.lastName}
-                                />
-                            </ListItem>
-                        )
-                    })}
-                </Box> :
+                {users.length || error ?
+                <>
+                    {error ?
+                    <Box className='avatar'>
+                        <Typography variant="h6" gutterBottom component="div" className='text-align-center'>
+                            {error}
+                        </Typography> 
+                    </Box>
+                    :
+                    <Box className='w-100'>
+                        {users.map((user, i) => {
+                            return (
+                                <ListItem 
+                                    key={user.id} 
+                                    onClick={()=>{
+                                        handleRequest(user.id)
+                                    }} 
+                                    className='user'
+                                >
+                                    <ListItemAvatar>
+                                        <Avatar>
+                                            <img width='40px' height='40px' alt='' src={avatars[i]} />
+                                        </Avatar>
+                                    </ListItemAvatar>
+                                    <ListItemText
+                                        primary={user.profile.firstName + ' ' + user.profile.lastName}
+                                    />
+                                </ListItem>
+                            )
+                        })}
+                    </Box> }
+                </>
+                :
                 <>
                     <Box className='avatar'>
                         <CircularProgress/>
