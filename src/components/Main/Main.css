@@ -1,0 +1,40 @@
+
+section {
+    padding: 0 4rem;
+    padding-top: 2rem;
+}
+
+.heading-list {
+    width: 100%;
+    padding: 0.6rem 0.5rem;
+    border-radius: 5px;
+    background: rgba(156, 219, 238, 0.3);
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+.heading-details {
+    border-radius: 5px;
+    background: rgba(156, 219, 238, 0.3);
+    padding: 0.6rem 0.5rem;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+.mt4 {
+    margin-top: -22px !important;
+}
+
+@media screen and (max-width: 56.2em) { 
+    section {
+        padding-left: 1rem;
+        padding-right: 2rem;
+        margin: 2rem 0;
+    }
+
+    .cont {
+        display: none;
+    }
+
+    .container {
+        padding-top: 10px !important;
+    }
+}
